@@ -4,7 +4,7 @@ namespace Otomaties\Omnicasa\Database;
 
 class WebId extends Abstracts\Table
 {
-    const PRIMARY_KEY = 'id';
+    const PRIMARY_KEY = 'web_id';
     
     const TABLE_NAME = 'omnicasa_property_web_ids';
 
@@ -20,7 +20,7 @@ class WebId extends Abstracts\Table
                 show_order mediumint(9) NULL,
                 sale boolean DEFAULT false,
                 rent boolean DEFAULT false,
-                UNIQUE KEY id (id)
+                UNIQUE KEY web_id (web_id)
                 );";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

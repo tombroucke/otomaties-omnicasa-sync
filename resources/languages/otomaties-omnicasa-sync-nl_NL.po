@@ -1,0 +1,281 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Otomaties Omnicasa Sync\n"
+"POT-Creation-Date: 2024-03-19 15:31+0100\n"
+"PO-Revision-Date: 2024-03-19 15:31+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.3.1\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: otomaties-omnicasa-sync.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: app/Enums/Goal.php:13
+msgid "For sale"
+msgstr "Te koop"
+
+#: app/Enums/Goal.php:14
+msgid "For rent"
+msgstr "Te huur"
+
+#: app/Helpers/Labels.php:17
+msgid "Add New"
+msgstr "Nieuw toevoegen"
+
+#. translators: %s: singular post name
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:19 app/Helpers/Labels.php:101
+#, php-format
+msgid "Add New %s"
+msgstr "Nieuw(e) %s toevoegen"
+
+#. translators: %s: singular post name
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:21 app/Helpers/Labels.php:95
+#, php-format
+msgid "Edit %s"
+msgstr "%s bewerken"
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:23
+#, php-format
+msgid "New %s"
+msgstr "Nieuw(e) %s"
+
+#. translators: %s: singular post name
+#. translators: %s: plural post name
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:25 app/Helpers/Labels.php:27
+#: app/Helpers/Labels.php:97
+#, php-format
+msgid "View %s"
+msgstr "Bekijk %s"
+
+#. translators: %s: singular post name
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:29 app/Helpers/Labels.php:85
+#, php-format
+msgid "Search %s"
+msgstr "%s zoeken"
+
+#. translators: %s: plural post name to lower
+#: app/Helpers/Labels.php:31
+#, php-format
+msgid "No %s found."
+msgstr "Geen %s gevonden."
+
+#: app/Helpers/Labels.php:34
+#, php-format
+msgid "No %s found in trash."
+msgstr "Geen %s gevonden in de prullenbak."
+
+#. translators: %s: singular post name
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:38 app/Helpers/Labels.php:93
+#, php-format
+msgid "Parent %s:"
+msgstr "Bovenliggend(e) %s:"
+
+#. translators: %s: singular post name
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:40 app/Helpers/Labels.php:89
+#, php-format
+msgid "All %s"
+msgstr "Alle %s"
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:42
+#, php-format
+msgid "%s Archives"
+msgstr "%s Archieven"
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:44
+#, php-format
+msgid "%s Attributes"
+msgstr "%s kenmerken"
+
+#. translators: %s: singular post name to lower
+#: app/Helpers/Labels.php:46
+#, php-format
+msgid "Insert into %s"
+msgstr "Toevoegen aan %s"
+
+#: app/Helpers/Labels.php:49
+#, php-format
+msgid "Uploaded to this %s"
+msgstr "Geupload naar deze %s"
+
+#. translators: %s: plural post name to lower
+#: app/Helpers/Labels.php:53
+#, php-format
+msgid "Filter %s list"
+msgstr "Filter %s lijst"
+
+#. translators: %s: singular post name
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:55 app/Helpers/Labels.php:124
+#, php-format
+msgid "%s list navigation"
+msgstr "Navigatie door %slijst"
+
+#. translators: %s: singular post name
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:57 app/Helpers/Labels.php:126
+#, php-format
+msgid "%s list"
+msgstr "%s lijst"
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:59
+#, php-format
+msgid "%s published."
+msgstr "%s gepubliceerd."
+
+#: app/Helpers/Labels.php:62
+#, php-format
+msgid "%s published privately."
+msgstr "%s privé gepubliceerd."
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:66
+#, php-format
+msgid "%s reverted to draft."
+msgstr "%s teruggezet naar concept."
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:68
+#, php-format
+msgid "%s scheduled."
+msgstr "%s gepland."
+
+#. translators: %s: singular post name
+#: app/Helpers/Labels.php:70
+#, php-format
+msgid "%s updated."
+msgstr "%s bijgewerkt."
+
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:87
+#, php-format
+msgid "Popular %s"
+msgstr "Populair %s"
+
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:91
+#, php-format
+msgid "Parent %s"
+msgstr "Bovenliggend(e) %s"
+
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:99
+#, php-format
+msgid "Update %s"
+msgstr "Bijwerken %s"
+
+#. translators: %s: singular taxonomy name
+#: app/Helpers/Labels.php:103
+#, php-format
+msgid "New %s Name"
+msgstr "Nieuw(e) %s naam"
+
+#: app/Helpers/Labels.php:106
+#, php-format
+msgid "Separate %s with commas"
+msgstr "Splits %s met komma’s"
+
+#: app/Helpers/Labels.php:111
+#, php-format
+msgid "Add or remove %s"
+msgstr "%s toevoegen of verwijderen"
+
+#: app/Helpers/Labels.php:116
+#, php-format
+msgid "Choose from most used %s"
+msgstr "Kies uit de meest gebruikte %s"
+
+#. translators: %s: plural taxonomy name to lower
+#: app/Helpers/Labels.php:120
+#, php-format
+msgid "No %s found"
+msgstr "Geen %s gevonden"
+
+#. translators: %s: plural taxonomy name to lower
+#. translators: %s: singular taxonomy name to lower
+#: app/Helpers/Labels.php:122 app/Helpers/Labels.php:131
+#, php-format
+msgid "No %s"
+msgstr "Geen %s"
+
+#. translators: %s: plural taxonomy name
+#: app/Helpers/Labels.php:129
+#, php-format
+msgid "&larr; Back to %s"
+msgstr "&larr; Terug naar %s"
+
+#. translators: %s: singular taxonomy name to lower
+#: app/Helpers/Labels.php:133
+#, php-format
+msgid "Filter by %s"
+msgstr "Filteren op %s"
+
+#: app/OptionsPages/Omnicasa.php:16 app/OptionsPages/Omnicasa.php:17
+msgid "Omnicasa"
+msgstr "Omnicasa"
+
+#: app/OptionsPages/Omnicasa.php:25
+msgid "Contact"
+msgstr "Contact"
+
+#: app/OptionsPages/Omnicasa.php:42 app/OptionsPages/Omnicasa.php:53
+msgid "Form"
+msgstr "Formulier"
+
+#: app/PostTypes/Project.php:20
+msgid "Project"
+msgstr "Project"
+
+#: app/PostTypes/Project.php:21
+msgid "Projects"
+msgstr "Projecten"
+
+#: app/PostTypes/Property.php:20
+msgid "Property"
+msgstr "Woning"
+
+#: app/PostTypes/Property.php:21
+msgid "Properties"
+msgstr "Eigenschappen"
+
+#: app/Taxonomies/GenreExample.php:21
+msgid "Genre"
+msgstr "Genre"
+
+#: app/Taxonomies/GenreExample.php:22
+msgid "Genres"
+msgstr "Genres"
+
+#. Plugin Name of the plugin/theme
+msgid "Otomaties Omnicasa Sync"
+msgstr "Otomaties Omnicasa Sync"
+
+#. Description of the plugin/theme
+msgid "Sync Omnicasa properties with WordPress"
+msgstr "Omnicasa-eigenschappen synchroniseren met WordPress"
+
+#. Author of the plugin/theme
+msgid "Tom Broucke"
+msgstr "Tom Broucke"
+
+#. Author URI of the plugin/theme
+msgid "https://tombroucke.be/"
+msgstr "https://tombroucke.be/"

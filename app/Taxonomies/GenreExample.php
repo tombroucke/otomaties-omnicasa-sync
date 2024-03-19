@@ -7,7 +7,7 @@ use Otomaties\Omnicasa\Helpers\Labels;
 use Otomaties\Omnicasa\Taxonomies\Contracts\Taxonomy;
 use Otomaties\Omnicasa\Exceptions\ExtendedCptsNotInstalledException;
 
-class Genre implements Taxonomy
+class GenreExample implements Taxonomy
 {
     const TAXONOMY = 'genre';
     const POST_TYPE = 'book';
