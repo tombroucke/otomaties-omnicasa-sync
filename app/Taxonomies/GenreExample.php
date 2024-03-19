@@ -18,8 +18,8 @@ class GenreExample implements Taxonomy
             throw new ExtendedCptsNotInstalledException();
         }
 
-        $taxonomySingularName = __('Genre', 'functionality-plugin');
-        $taxonomyPluralName = __('Genres', 'functionality-plugin');
+        $taxonomySingularName = __('Genre', 'otomaties-omnicasa-sync');
+        $taxonomyPluralName = __('Genres', 'otomaties-omnicasa-sync');
 
         $args = [
             'meta_box' => 'radio', // can be null, 'simple', 'radio', 'dropdown'

@@ -17,8 +17,8 @@ class Property implements PostType
             throw new ExtendedCptsNotInstalledException();
         }
 
-        $postSingularName = __('Property', 'functionality-plugin');
-        $postPluralName = __('Properties', 'functionality-plugin');
+        $postSingularName = __('Property', 'otomaties-omnicasa-sync');
+        $postPluralName = __('Properties', 'otomaties-omnicasa-sync');
 
         $args = [
             'show_in_feed' => true,
@@ -28,7 +28,7 @@ class Property implements PostType
             'dashboard_activity' => true,
             // 'admin_cols' => [
             //     'property_featured_image' => [
-            //         'title'          => __('Illustration', 'functionality-plugin'),
+            //         'title'          => __('Illustration', 'otomaties-omnicasa-sync'),
             //         'featured_image' => 'thumbnail',
             //     ],
             //     'property_published' => [

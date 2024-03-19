@@ -17,8 +17,8 @@ class Project implements PostType
             throw new ExtendedCptsNotInstalledException();
         }
 
-        $postSingularName = __('Project', 'functionality-plugin');
-        $postPluralName = __('Projects', 'functionality-plugin');
+        $postSingularName = __('Project', 'otomaties-omnicasa-sync');
+        $postPluralName = __('Projects', 'otomaties-omnicasa-sync');
 
         $args = [
             'show_in_feed' => true,
@@ -28,7 +28,7 @@ class Project implements PostType
             'dashboard_activity' => true,
             // 'admin_cols' => [
             //     'property_featured_image' => [
-            //         'title'          => __('Illustration', 'functionality-plugin'),
+            //         'title'          => __('Illustration', 'otomaties-omnicasa-sync'),
             //         'featured_image' => 'thumbnail',
             //     ],
             //     'property_published' => [
