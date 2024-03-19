@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Otomaties Omnicasa Sync\n"
 "POT-Creation-Date: 2024-03-19 15:31+0100\n"
-"PO-Revision-Date: 2024-03-19 15:31+0100\n"
+"PO-Revision-Date: 2024-03-19 15:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -250,11 +250,11 @@ msgstr "Projecten"
 
 #: app/PostTypes/Property.php:20
 msgid "Property"
-msgstr "Woning"
+msgstr "Vastgoed"
 
 #: app/PostTypes/Property.php:21
 msgid "Properties"
-msgstr "Eigenschappen"
+msgstr "Vastgoed"
 
 #: app/Taxonomies/GenreExample.php:21
 msgid "Genre"
@@ -270,7 +270,7 @@ msgstr "Otomaties Omnicasa Sync"
 
 #. Description of the plugin/theme
 msgid "Sync Omnicasa properties with WordPress"
-msgstr "Omnicasa-eigenschappen synchroniseren met WordPress"
+msgstr "Omnicasa vastgoed synchroniseren met WordPress"
 
 #. Author of the plugin/theme
 msgid "Tom Broucke"
