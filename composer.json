@@ -1,0 +1,20 @@
+{
+    "name": "tombroucke/otomaties-omnicasa-sync",
+    "autoload": {
+        "psr-4": {
+            "Otomaties\\Omnicasa\\": "app/"
+        }
+    },
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Tom Broucke",
+            "email": "tom@tombroucke.be"
+        }
+    ],
+    "require": {
+        "fw4/omnicasa-api": "^1.2",
+        "johnbillion/extended-cpts": "^5.0",
+        "tombroucke/wp-sync-posts": "^2.2",
+    }
+}
