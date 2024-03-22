@@ -6,7 +6,7 @@ class Formatter
 {
     public static function price(string $price, string $currency = '€') : string
     {
-        return $currency . number_format($price, 0, ',', '.');
+        return number_format($price, 0, ',', '.') . $currency;
     }
 
     public static function area(string $area) : string

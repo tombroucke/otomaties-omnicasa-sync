@@ -18,14 +18,9 @@ class Property extends Post
         return $this->getMeta('PublishPrice') === '1';
     }
 
-    public function price() : string
-    {
-        return $this->getMeta('Price');
-    }
-
     public function formattedPrice() : string
     {
-        return $this->showPrice() ? Formatter::price($this->price()) : '';
+        return $this->showPrice() ? Formatter::price($this->getMeta('Price'), $this->getMeta('PriceUnitText')) : '';
     }
     
     public function address() : array
