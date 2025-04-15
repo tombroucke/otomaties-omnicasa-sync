@@ -18,14 +18,14 @@ class SyncService
         //
     }
 
-    public function syncProperties($limit = null): void
+    public function syncProperties(): void
     {
         $syncer = new Syncer('property');
 
         collect($this->client->getPropertyList())
             ->filter(function ($property) {
                 $syncableStatuses = collect(StatusEnum::cases())
-                    ->filter(fn($status) => $status->syncable())
+                    ->filter(fn ($status) => $status->syncable())
                     ->keys()
                     ->toArray();
 
