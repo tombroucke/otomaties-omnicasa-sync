@@ -4,6 +4,4 @@ namespace Otomaties\Omnicasa\Exceptions;
 
 use Exception;
 
-class CredentialsNotSetException extends Exception
-{
-}
+class CredentialsNotSetException extends Exception {}

@@ -16,5 +16,8 @@
         "fw4/omnicasa-api": "^1.2",
         "johnbillion/extended-cpts": "^5.0",
         "tombroucke/wp-sync-posts": "^2.2"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.22"
     }
 }

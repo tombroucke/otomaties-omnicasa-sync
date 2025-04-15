@@ -2,28 +2,18 @@
 
 namespace Otomaties\Omnicasa\Command;
 
-use Otomaties\Omnicasa\Services\SyncService;
 use Otomaties\Omnicasa\Command\Contracts\CommandContract;
+use Otomaties\Omnicasa\Services\SyncService;
 
 class SyncWebIdsCommand implements CommandContract
 {
-    
     public const COMMAND_NAME = 'omnicasa sync property-web-ids';
 
     public const COMMAND_DESCRIPTION = 'Sync Omnicasa property web Ids with WordPress';
 
-    public const COMMAND_ARGUMENTS = [
-        // [
-        //     'type' => 'assoc',
-        //     'name' => 'bar',
-        //     'description' => 'Enter a value for bar',
-        //     'optional' => false,
-        // ]
-    ];
+    public const COMMAND_ARGUMENTS = [];
 
-    public function __construct(private SyncService $syncService)
-    {
-    }
+    public function __construct(private SyncService $syncService) {}
 
     /**
      * Run below command to activate:
@@ -32,12 +22,7 @@ class SyncWebIdsCommand implements CommandContract
      */
     public function handle(array $args, array $assocArgs): void
     {
-        $defaultAssocArgs = [
-            'limit' => null
-        ];
-        $assocArgs = array_merge($defaultAssocArgs, $assocArgs);
-
-        $this->syncService->syncWebIds($assocArgs['limit']);
+        $this->syncService->syncWebIds();
 
         \WP_CLI::success('Done syncing');
     }

@@ -9,7 +9,7 @@ abstract class Post
     private \WP_Post $post;
 
     public function __construct(
-        \WP_Post|int $post
+        \WP_Post|int $post,
     ) {
         if (is_int($post)) {
             $post = get_post($post);
@@ -38,14 +38,15 @@ abstract class Post
         return get_permalink($this->post);
     }
 
-    public function thumbnail($size = 'thumbnail', $attr = []) : string
+    public function thumbnail($size = 'thumbnail', $attr = []): string
     {
         return get_the_post_thumbnail($this->post, $size, $attr);
     }
 
-    public function thumbnailUrl($size = 'thumbnail') : ?string
+    public function thumbnailUrl($size = 'thumbnail'): ?string
     {
         $url = get_the_post_thumbnail_url($this->post, $size);
+
         return $url != '' ? $url : null;
     }
 
@@ -63,17 +64,17 @@ abstract class Post
     {
         wp_update_post([
             'ID' => $this->getId(),
-            'post_parent' => $parentId
+            'post_parent' => $parentId,
         ]);
     }
 
-    abstract public static function postType() : string;
+    abstract public static function postType(): string;
 
-    public static function all() : Collection
+    public static function all(): Collection
     {
         $posts = get_posts([
             'post_type' => static::postType(),
-            'numberposts' => -1
+            'numberposts' => -1,
         ]);
 
         return collect(array_map(function ($post) {

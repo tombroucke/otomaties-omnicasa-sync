@@ -3,17 +3,17 @@
 namespace Otomaties\Omnicasa\PostTypes;
 
 use ExtCPTs\PostType as ExtCPTsPostType;
+use Otomaties\Omnicasa\Exceptions\ExtendedCptsNotInstalledException;
 use Otomaties\Omnicasa\Helpers\Labels;
 use Otomaties\Omnicasa\PostTypes\Contracts\PostType;
-use Otomaties\Omnicasa\Exceptions\ExtendedCptsNotInstalledException;
 
 class Property implements PostType
 {
-    const POST_TYPE = 'property';
+    public const POST_TYPE = 'property';
 
-    public function register() : ExtCPTsPostType
+    public function register(): ExtCPTsPostType
     {
-        if (!function_exists('register_extended_post_type')) {
+        if (! function_exists('register_extended_post_type')) {
             throw new ExtendedCptsNotInstalledException();
         }
 
@@ -42,8 +42,8 @@ class Property implements PostType
 
         $names = [
             'singular' => $postSingularName,
-            'plural'   => $postPluralName,
-            'slug'     => self::POST_TYPE,
+            'plural' => $postPluralName,
+            'slug' => self::POST_TYPE,
         ];
 
         return register_extended_post_type(self::POST_TYPE, $args, $names);

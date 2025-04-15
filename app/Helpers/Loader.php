@@ -4,8 +4,6 @@ namespace Otomaties\Omnicasa\Helpers;
 
 use Illuminate\Support\Collection;
 
-
-
 class Loader
 {
     protected $actions;
@@ -18,7 +16,7 @@ class Loader
         $this->filters = collect();
     }
 
-    public function addAction($hook, $component, $callback, $priority = 10, $accepted_args = 1) : void
+    public function addAction($hook, $component, $callback, $priority = 10, $accepted_args = 1): void
     {
         $this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
     }
@@ -28,7 +26,7 @@ class Loader
         $this->actions = $this->remove($this->actions, $hook, $component, $callback);
     }
 
-    public function addFilter($hook, $component, $callback, $priority = 10, $accepted_args = 1) : void
+    public function addFilter($hook, $component, $callback, $priority = 10, $accepted_args = 1): void
     {
         $this->filters = $this->add($this->filters, $hook, $component, $callback, $priority, $accepted_args);
     }
@@ -38,20 +36,20 @@ class Loader
         $this->filters = $this->remove($this->filters, $hook, $component, $callback);
     }
 
-    private function add($hooks, $hook, $component, $callback, $priority, $accepted_args) : Collection
+    private function add($hooks, $hook, $component, $callback, $priority, $accepted_args): Collection
     {
         $hooks->push([
-            'hook'          => $hook,
-            'component'     => $component,
-            'callback'      => $callback,
-            'priority'      => $priority,
-            'accepted_args' => $accepted_args
+            'hook' => $hook,
+            'component' => $component,
+            'callback' => $callback,
+            'priority' => $priority,
+            'accepted_args' => $accepted_args,
         ]);
 
         return $hooks;
     }
 
-    private function remove($hooks, $hook, $component, $callback) : Collection
+    private function remove($hooks, $hook, $component, $callback): Collection
     {
         $hooks = $hooks->reject(function ($item) use ($hook, $component, $callback) {
             return $item['hook'] === $hook
@@ -62,25 +60,25 @@ class Loader
         return $hooks;
     }
 
-    public function run() : void
+    public function run(): void
     {
         $this->filters->each(function ($filter) {
             add_filter(
                 $filter['hook'],
-                array( $filter['component'],
-                $filter['callback'] ),
+                [$filter['component'],
+                    $filter['callback']],
                 $filter['priority'],
-                $filter['accepted_args']
+                $filter['accepted_args'],
             );
         });
 
         $this->actions->each(function ($action) {
             add_action(
                 $action['hook'],
-                array( $action['component'],
-                $action['callback'] ),
+                [$action['component'],
+                    $action['callback']],
                 $action['priority'],
-                $action['accepted_args']
+                $action['accepted_args'],
             );
         });
     }

@@ -3,32 +3,32 @@
 namespace Otomaties\Omnicasa\Services;
 
 use Omnicasa\Omnicasa;
-use Otomaties\Omnicasa\Plugin;
-use Otomaties\WpSyncPosts\Syncer;
-use Otomaties\Omnicasa\Database\WebId;
+use Otomaties\Omnicasa\Database\PropertyType;
 use Otomaties\Omnicasa\Database\Status;
 use Otomaties\Omnicasa\Database\Substatus;
-use Otomaties\Omnicasa\Database\PropertyType;
+use Otomaties\Omnicasa\Database\WebId;
 use Otomaties\Omnicasa\Enums\Status as StatusEnum;
+use Otomaties\Omnicasa\Plugin;
+use Otomaties\WpSyncPosts\Syncer;
 
 class SyncService
 {
-
     public function __construct(private Omnicasa $client, private Plugin $plugin)
     {
+        //
     }
 
-    public function syncProperties($limit = null) : void
+    public function syncProperties($limit = null): void
     {
-
         $syncer = new Syncer('property');
-        
+
         collect($this->client->getPropertyList())
             ->filter(function ($property) {
                 $syncableStatuses = collect(StatusEnum::cases())
-                    ->filter(fn ($status) => $status->syncable())
+                    ->filter(fn($status) => $status->syncable())
                     ->keys()
                     ->toArray();
+
                 return in_array($property->Status, $syncableStatuses);
             })
             ->each(function ($property) use ($syncer) {
@@ -47,36 +47,36 @@ class SyncService
                 $args['meta_input'] = array_merge($args['meta_input'], $this->buildMeta($property));
 
                 $args['media'][] = [
-                    'key'           => false,
-                    'featured'      => true,
-                    'url'           => $property->LargePicture,
-                    'group'         => 'synced_images'
+                    'key' => false,
+                    'featured' => true,
+                    'url' => $property->LargePicture,
+                    'group' => 'synced_images',
                 ];
-                
+
                 if (isset($property->XLargePictureItems) && is_array($property->XLargePictureItems) && count($property->XLargePictureItems) > 0) {
                     foreach ($property->XLargePictureItems as $pictureItem) {
                         $args['media'][] = [
-                            'key'           => $pictureItem->ID,
-                            'featured'      => false,
-                            'url'           => $pictureItem->Url,
-                            'group'         => 'synced_images'
+                            'key' => $pictureItem->ID,
+                            'featured' => false,
+                            'url' => $pictureItem->Url,
+                            'group' => 'synced_images',
                         ];
                     }
                 }
-    
+
                 $existingPostQuery = [
-                    'by'    => 'meta_value',
-                    'key'   => 'omnicasa_id',
+                    'by' => 'meta_value',
+                    'key' => 'omnicasa_id',
                     'value' => $property->ID,
                 ];
-    
+
                 $syncer->addPost($args, $existingPostQuery);
             });
 
         $syncer->execute();
     }
 
-    public function syncProjects($limit = null) : void
+    public function syncProjects($limit = null): void
     {
 
         $syncer = new Syncer('project');
@@ -99,36 +99,36 @@ class SyncService
                 $args['meta_input'] = $this->buildMeta($project);
 
                 $args['media'][] = [
-                    'key'           => false,
-                    'featured'      => true,
-                    'url'           => $project->LargePicture,
-                    'group'         => 'synced_images'
+                    'key' => false,
+                    'featured' => true,
+                    'url' => $project->LargePicture,
+                    'group' => 'synced_images',
                 ];
 
                 if (property_exists($project, 'XLargePictureItems') && is_array($project->XLargePictureItems) && count($project->XLargePictureItems) > 0) {
                     foreach ($project->XLargePictureItems as $pictureItem) {
                         $args['media'][] = [
-                            'key'           => $pictureItem->ID,
-                            'featured'      => false,
-                            'url'           => $pictureItem->Url,
-                            'group'         => 'synced_images'
+                            'key' => $pictureItem->ID,
+                            'featured' => false,
+                            'url' => $pictureItem->Url,
+                            'group' => 'synced_images',
                         ];
                     }
                 }
-    
+
                 $existingPostQuery = [
-                    'by'    => 'meta_value',
-                    'key'   => 'omnicasa_id',
+                    'by' => 'meta_value',
+                    'key' => 'omnicasa_id',
                     'value' => $project->ID,
                 ];
-    
+
                 $syncer->addPost($args, $existingPostQuery);
             });
 
         $syncer->execute();
     }
 
-    public function syncStatuses($limit = null) : void
+    public function syncStatuses($limit = null): void
     {
         foreach ($this->client->getStatusList() as $status) {
             $this->plugin->make(Status::class)->updateOrCreate([
@@ -152,7 +152,7 @@ class SyncService
         }
     }
 
-    public function syncPropertyTypes($limit = null) : void
+    public function syncPropertyTypes($limit = null): void
     {
         foreach ($this->client->getTypeOfPropertyList() as $propertyType) {
             $this->plugin->make(PropertyType::class)->updateOrCreate([
@@ -168,7 +168,7 @@ class SyncService
         }
     }
 
-    public function syncWebIds($limit = null) : void
+    public function syncWebIds($limit = null): void
     {
         foreach ($this->client->getWebIDList() as $item) {
             $this->plugin->make(WebId::class)->updateOrCreate([
@@ -205,17 +205,19 @@ class SyncService
                     'XLargePictureItem',
                     'XLargePictureItems',
                 ];
-                return !in_array($key, $imageKeys);
+
+                return ! in_array($key, $imageKeys);
             })
             // filter empty values
             ->filter(function ($value, $key) {
-                return !empty($value) && '-' !== $value;
+                return ! empty($value) && $value !== '-';
             })
             // Convert DateTime objects to string
             ->map(function ($value, $key) {
                 if ($value instanceof \DateTime) {
                     $value = gmdate('Y-m-d H:i:s', $value->getTimestamp());
                 }
+
                 return $value;
             })
             // Convert ResponseObjects to array
@@ -223,11 +225,13 @@ class SyncService
                 if ($value instanceof \Omnicasa\Response\ResponseObject) {
                     $value = $value->getData();
                 }
+
                 return $value;
             })
             ->each(function ($value, $key) use (&$meta) {
                 $meta[$key] = $value;
             });
+
         return $meta;
     }
 }

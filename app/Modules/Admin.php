@@ -2,8 +2,8 @@
 
 namespace Otomaties\Omnicasa\Modules;
 
-use Otomaties\Omnicasa\Modules\Abstracts\Module;
 use Otomaties\Omnicasa\Enums\ContactRequestFields;
+use Otomaties\Omnicasa\Modules\Abstracts\Module;
 
 class Admin extends Module
 {
@@ -12,20 +12,22 @@ class Admin extends Module
         $this->loader->addAction('hf_form_success', $this, 'contactRequest', 10, 2);
     }
 
-    public function contactRequest($submission, $form)
+    public function contactRequest($submission, $form): void
     {
-        if ($form->ID === (int) get_field('omnicasa_htmlform', 'option')) {
-            $args = [];
-            $fieldMapping = get_field('omnicasa_htmlform_field_mapping', 'option');
-            collect(ContactRequestFields::cases())
-                ->each(function ($field) use ($fieldMapping, $submission, &$args) {
-                    $fieldName = $fieldMapping[$field->name] ?? null;
-                    if (!$fieldName) {
-                        return;
-                    }
-                    $args[$field->name] = $submission->data[$fieldName];
-                });
-            $this->client->contactOnMe($args);
+        if ($form->ID !== (int) get_field('omnicasa_htmlform', 'option')) {
+            return;
         }
+
+        $fieldMapping = get_field('omnicasa_htmlform_field_mapping', 'option');
+        $args = collect(ContactRequestFields::cases())
+            ->filter(function ($field) use ($fieldMapping) {
+                return $fieldMapping[$field->name];
+            })
+            ->mapWithKeys(function ($field) use ($fieldMapping, $submission) {
+                return [$field->name => $submission->data[$fieldMapping[$field->name] ?? null]];
+            })
+            ->toArray();
+
+        $this->client->contactOnMe($args);
     }
 }

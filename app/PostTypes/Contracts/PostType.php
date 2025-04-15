@@ -6,5 +6,5 @@ use ExtCPTs\PostType as ExtCPTsPostType;
 
 interface PostType
 {
-    public function register() : ExtCPTsPostType;
+    public function register(): ExtCPTsPostType;
 }

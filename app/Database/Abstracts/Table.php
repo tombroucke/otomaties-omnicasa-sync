@@ -10,6 +10,7 @@ abstract class Table
         $tableName = $wpdb->prefix . static::TABLE_NAME;
         $primaryKey = static::PRIMARY_KEY;
         $sql = "SELECT * FROM $tableName WHERE $primaryKey = %d";
+
         return $wpdb->get_row($wpdb->prepare($sql, $primaryKeyValue));
     }
 
@@ -18,6 +19,7 @@ abstract class Table
         global $wpdb;
         $tableName = $wpdb->prefix . static::TABLE_NAME;
         $wpdb->insert($tableName, $data);
+
         return $wpdb->insert_id;
     }
 
@@ -34,14 +36,16 @@ abstract class Table
         global $wpdb;
         $tableName = $wpdb->prefix . static::TABLE_NAME;
         $primaryKey = static::PRIMARY_KEY;
-        $sql = "SELECT * FROM $tableName WHERE " . key($where) . " = %s";
+        $sql = "SELECT * FROM $tableName WHERE " . key($where) . ' = %s';
         $exists = $wpdb->get_row($wpdb->prepare($sql, current($where)));
-        
+
         if ($exists) {
             $wpdb->update($tableName, $data, $where);
+
             return $exists->$primaryKey;
         } else {
             $wpdb->insert($tableName, $data);
+
             return $wpdb->insert_id;
         }
     }
@@ -58,6 +62,7 @@ abstract class Table
     {
         global $wpdb;
         $tableName = $wpdb->prefix . static::TABLE_NAME;
+
         return $wpdb->get_results("SELECT * FROM $tableName");
     }
 
@@ -71,5 +76,5 @@ abstract class Table
         return $this->get($primaryKeyValue) !== null;
     }
 
-    abstract public static function create() : void;
+    abstract public static function create(): void;
 }

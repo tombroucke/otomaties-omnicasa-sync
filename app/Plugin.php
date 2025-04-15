@@ -1,41 +1,40 @@
-<?php 
+<?php
 
 namespace Otomaties\Omnicasa;
 
-use Omnicasa\Omnicasa;
-use Illuminate\Support\Str;
 use Illuminate\Container\Container;
-use Otomaties\Omnicasa\Helpers\View;
-use Otomaties\Omnicasa\Modules\Admin;
+use Illuminate\Support\Str;
+use Omnicasa\Omnicasa;
+use Otomaties\Omnicasa\Command\CommandRegistrar;
+use Otomaties\Omnicasa\Exceptions\CredentialsNotSetException;
 use Otomaties\Omnicasa\Helpers\Assets;
 use Otomaties\Omnicasa\Helpers\Config;
 use Otomaties\Omnicasa\Helpers\Loader;
-use Otomaties\Omnicasa\Modules\Frontend;
-use Otomaties\Omnicasa\Command\CommandRegistrar;
-use Otomaties\Omnicasa\Exceptions\CredentialsNotSetException;
+use Otomaties\Omnicasa\Helpers\View;
+use Otomaties\Omnicasa\Modules\Admin;
 
 class Plugin extends Container
 {
     private array $modules = [
-        Frontend::class,
         Admin::class,
     ];
 
     public function __construct(
         private Loader $loader,
-        private Config $config
+        private Config $config,
     ) {
         $this->addBindings();
     }
 
-    private function addBindings() : void
+    private function addBindings(): void
     {
         $this->singleton(Omnicasa::class, function () {
             $username = getenv('OMNICASA_USERNAME');
             $password = getenv('OMNICASA_PASSWORD');
-            if (!$username || !$password) {
+            if (! $username || ! $password) {
                 throw new CredentialsNotSetException('Omnicasa credentials not set');
             }
+
             return new \Omnicasa\Omnicasa($username, $password);
         });
 
@@ -52,12 +51,12 @@ class Plugin extends Container
         });
     }
 
-    public function config(string $key) : mixed
+    public function config(string $key): mixed
     {
         return $this->config->get($key);
     }
 
-    public function initialize() : self
+    public function initialize(): self
     {
         $this->loader->addAction('init', $this, 'loadTextDomain');
 
@@ -111,51 +110,53 @@ class Plugin extends Container
             });
     }
 
-    private function loadModules() : self
+    private function loadModules(): self
     {
         collect($this->modules)
             ->each(function ($className) {
                 ($this->make($className))
                     ->init();
             });
+
         return $this;
     }
 
-    public function loadTextDomain() : void
+    public function loadTextDomain(): void
     {
         load_plugin_textdomain(
             'otomaties-omnicasa-sync',
             false,
-            basename($this->config('paths.base')) . '/resources/languages'
+            basename($this->config('paths.base')) . '/resources/languages',
         );
     }
 
-    public function getLoader() : Loader
+    public function getLoader(): Loader
     {
         return $this->loader;
     }
 
-    public function runLoader() : void
+    public function runLoader(): void
     {
-        apply_filters('plugin_boilerplate_loader', $this->getLoader())
+        apply_filters('omnicasa_loader', $this->getLoader())
             ->run();
     }
-    
+
     private function collectFilesIn($path)
     {
         $fullPath = $this->config('paths.app') . "/$path";
+
         return collect(array_merge(
             glob("$fullPath/*.php"),
-            glob("$fullPath/**/*.php")
+            glob("$fullPath/**/*.php"),
         ))
-        ->reject(function ($filename) {
-            return Str::contains($filename, 'Example');
-        })
-        ->reject(function ($filename) {
-            return Str::contains($filename, '/Abstracts') || Str::contains($filename, '/Concerns') || Str::contains($filename, '/Contracts');
-        });
+            ->reject(function ($filename) {
+                return Str::contains($filename, 'Example');
+            })
+            ->reject(function ($filename) {
+                return Str::contains($filename, '/Abstracts') || Str::contains($filename, '/Concerns') || Str::contains($filename, '/Contracts');
+            });
     }
-    
+
     private function namespacedClassNameFromFilename($filename)
     {
         return Str::of($filename)
@@ -163,7 +164,7 @@ class Plugin extends Container
             ->ltrim('/')
             ->replace('/', '\\')
             ->rtrim('.php')
-            ->prepend(__NAMESPACE__. '\\')
+            ->prepend(__NAMESPACE__ . '\\')
             ->__toString();
     }
 }

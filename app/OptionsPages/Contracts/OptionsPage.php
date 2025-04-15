@@ -4,5 +4,5 @@ namespace Otomaties\Omnicasa\OptionsPages\Contracts;
 
 interface OptionsPage
 {
-    public function register() : void;
+    public function register(): void;
 }

@@ -19,7 +19,7 @@ enum Status: int
         ]);
     }
 
-    public function active() : bool
+    public function active(): bool
     {
         return $this === self::ACTIVE;
     }

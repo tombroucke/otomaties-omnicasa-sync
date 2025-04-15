@@ -8,28 +8,28 @@ use Otomaties\Omnicasa\Models\Abstracts\Post;
 
 class Property extends Post
 {
-    public static function postType() : string
+    public static function postType(): string
     {
         return 'property';
     }
-    
-    public function showPrice() : bool
+
+    public function showPrice(): bool
     {
         return $this->getMeta('PublishPrice') === '1';
     }
 
-    public function formattedPrice() : string
+    public function formattedPrice(): string
     {
         return $this->showPrice() ? Formatter::price($this->getMeta('Price'), $this->getMeta('PriceUnitText')) : '';
     }
-    
-    public function address() : array
+
+    public function address(): array
     {
         $street = $this->getMeta('Street');
         $streetNumber = $this->getMeta('HouseNumber');
         $postCode = $this->getMeta('Zip');
         $city = $this->getMeta('City');
-        
+
         return [
             'street' => $street,
             'streetNumber' => $streetNumber,
@@ -38,18 +38,19 @@ class Property extends Post
         ];
     }
 
-    public function formattedAddress() : string
+    public function formattedAddress(): string
     {
         $address = $this->address();
+
         return $address['street'] . ' ' . $address['streetNumber'] . '<br /> ' . $address['postCode'] . ' ' . $address['city'];
     }
 
-    public function status() : int
+    public function status(): int
     {
         return (int) $this->getMeta('Status');
     }
 
-    public function formattedStatus() : string
+    public function formattedStatus(): string
     {
         return (new Status())->get($this->status())->name;
     }

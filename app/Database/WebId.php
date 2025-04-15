@@ -4,15 +4,15 @@ namespace Otomaties\Omnicasa\Database;
 
 class WebId extends Abstracts\Table
 {
-    const PRIMARY_KEY = 'web_id';
-    
-    const TABLE_NAME = 'omnicasa_property_web_ids';
+    public const PRIMARY_KEY = 'web_id';
 
-    public static function create() : void
+    public const TABLE_NAME = 'omnicasa_property_web_ids';
+
+    public static function create(): void
     {
         global $wpdb;
         $tableName = $wpdb->prefix . self::TABLE_NAME;
-        
+
         $sql = "CREATE TABLE $tableName (
                 id mediumint(9) NOT NULL,
                 web_id mediumint(9) NULL,
@@ -23,7 +23,7 @@ class WebId extends Abstracts\Table
                 UNIQUE KEY web_id (web_id)
                 );";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($sql);
     }
 }

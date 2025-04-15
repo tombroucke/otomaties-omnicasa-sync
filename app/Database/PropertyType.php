@@ -4,15 +4,15 @@ namespace Otomaties\Omnicasa\Database;
 
 class PropertyType extends Abstracts\Table
 {
-    const PRIMARY_KEY = 'id';
-    
-    const TABLE_NAME = 'omnicasa_property_types';
+    public const PRIMARY_KEY = 'id';
 
-    public static function create() : void
+    public const TABLE_NAME = 'omnicasa_property_types';
+
+    public static function create(): void
     {
         global $wpdb;
         $tableName = $wpdb->prefix . self::TABLE_NAME;
-        
+
         $sql = "CREATE TABLE $tableName (
                 id mediumint(9) NOT NULL,
                 name varchar(255) NULL,
@@ -23,7 +23,7 @@ class PropertyType extends Abstracts\Table
                 UNIQUE KEY id (id)
                 );";
 
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         dbDelta($sql);
     }
 }

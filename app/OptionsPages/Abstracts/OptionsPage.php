@@ -6,7 +6,6 @@ use StoutLogic\AcfBuilder\FieldsBuilder;
 
 abstract class OptionsPage
 {
-        
     protected string $slug = 'options-page';
 
     protected string $title = 'Options';
@@ -15,9 +14,9 @@ abstract class OptionsPage
 
     protected string $capability = 'edit_posts';
 
-    public function register() : void
+    public function register(): void
     {
-        if (!function_exists('acf_add_options_page')) {
+        if (! function_exists('acf_add_options_page')) {
             throw new \Exception('ACF is not installed');
         }
 
@@ -35,7 +34,7 @@ abstract class OptionsPage
             'redirect' => false,
         ]);
     }
-    
+
     public function addFields()
     {
         $fieldsbuilder = new FieldsBuilder($this->slug, [
@@ -47,5 +46,5 @@ abstract class OptionsPage
         acf_add_local_field_group($fieldsbuilder->build());
     }
 
-    abstract protected function fields(FieldsBuilder $fieldsBuilder) : FieldsBuilder;
+    abstract protected function fields(FieldsBuilder $fieldsBuilder): FieldsBuilder;
 }

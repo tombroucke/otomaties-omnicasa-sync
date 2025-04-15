@@ -6,5 +6,5 @@ use ExtCPTs\Taxonomy as ExtCPTsTaxonomy;
 
 interface Taxonomy
 {
-    public function register() : ExtCPTsTaxonomy;
+    public function register(): ExtCPTsTaxonomy;
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Otomaties\Omnicasa\Plugin;
 use Otomaties\Omnicasa\Helpers\Config;
 use Otomaties\Omnicasa\Helpers\Loader;
+use Otomaties\Omnicasa\Plugin;
 
 /**
  * Plugin Name:       Otomaties Omnicasa Sync
@@ -15,7 +15,6 @@ use Otomaties\Omnicasa\Helpers\Loader;
  * Text Domain:       otomaties-omnicasa-sync
  * Domain Path:       /resources/languages
  */
-
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
@@ -29,10 +28,10 @@ function omnicasa()
 {
     static $plugin;
 
-    if (!$plugin) {
+    if (! $plugin) {
         $plugin = new Plugin(
             new Loader(),
-            new Config()
+            new Config(),
         );
 
         do_action('omnicasa', $plugin);

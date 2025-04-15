@@ -3,18 +3,19 @@
 namespace Otomaties\Omnicasa\Taxonomies;
 
 use ExtCPTs\Taxonomy as ExtCPTsTaxonomy;
+use Otomaties\Omnicasa\Exceptions\ExtendedCptsNotInstalledException;
 use Otomaties\Omnicasa\Helpers\Labels;
 use Otomaties\Omnicasa\Taxonomies\Contracts\Taxonomy;
-use Otomaties\Omnicasa\Exceptions\ExtendedCptsNotInstalledException;
 
 class GenreExample implements Taxonomy
 {
-    const TAXONOMY = 'genre';
-    const POST_TYPE = 'book';
+    public const TAXONOMY = 'genre';
 
-    public function register() : ExtCPTsTaxonomy
+    public const POST_TYPE = 'book';
+
+    public function register(): ExtCPTsTaxonomy
     {
-        if (!function_exists('register_extended_taxonomy')) {
+        if (! function_exists('register_extended_taxonomy')) {
             throw new ExtendedCptsNotInstalledException();
         }
 
@@ -27,10 +28,10 @@ class GenreExample implements Taxonomy
             'labels' => Labels::taxonomy($taxonomySingularName, $taxonomyPluralName),
             'admin_cols' => [
                 'updated' => [
-                    'title_cb'    => function () {
+                    'title_cb' => function () {
                         return '<em>Last</em> Updated';
                     },
-                    'meta_key'    => 'updated_date',
+                    'meta_key' => 'updated_date',
                     'date_format' => 'd/m/Y',
                 ],
             ],
