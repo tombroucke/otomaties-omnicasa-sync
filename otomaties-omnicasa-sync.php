@@ -7,7 +7,7 @@ use Otomaties\Omnicasa\Plugin;
 /**
  * Plugin Name:       Otomaties Omnicasa Sync
  * Description:       Sync Omnicasa properties with WordPress
- * Version:           1.1.1
+ * Version:           1.2.0
  * Author:            Tom Broucke
  * Author URI:        https://tombroucke.be/
  * License:           GPL-2.0+
