@@ -12,11 +12,13 @@ use Otomaties\Omnicasa\Helpers\Config;
 use Otomaties\Omnicasa\Helpers\Loader;
 use Otomaties\Omnicasa\Helpers\View;
 use Otomaties\Omnicasa\Modules\Admin;
+use Otomaties\Omnicasa\Modules\Redirects;
 
 class Plugin extends Container
 {
     private array $modules = [
         Admin::class,
+        Redirects::class,
     ];
 
     public function __construct(
